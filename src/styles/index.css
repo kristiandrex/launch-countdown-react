@@ -1,0 +1,111 @@
+:root {
+  --grayish-blue: hsl(237, 18%, 59%);
+  --soft-red: hsl(345, 95%, 68%);
+  --dark-desaturated-blue: hsl(236, 21%, 26%);
+  --very-dark-blue: hsl(235, 16%, 14%);
+  --very-dark-black-blue: hsl(234, 17%, 12%);
+}
+
+#root {
+  display: grid;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--very-dark-blue);
+  background-image: url("../assets/bg-stars.svg");
+  font-family: "Red Hat Text", sans-serif;
+  color: #fff;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: grid;
+  grid-template-rows: 25vh 50vh 25vh;
+}
+
+header {
+  padding-top: 5rem;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+}
+
+main {
+  margin-top: 3rem;
+}
+
+main .timer {
+  padding: 0 1.5rem;
+}
+
+main .timer .timer-item {
+  display: inline-block;
+}
+
+main .timer .timer-item + .timer-item {
+  margin-left: 1rem;
+}
+
+main .timer .timer-item .card {
+  background-color: var(--dark-desaturated-blue);
+  color: var(--soft-red);
+  font-size: 2.5rem;
+  border-radius: 0.25rem;
+  width: 5rem;
+  height: 5rem;
+  padding: 1.5rem 0.75rem;
+  box-sizing: border-box;
+  line-height: 2rem;
+}
+
+main .timer .timer-item .title {
+  color: var(--grayish-blue);
+  text-transform: uppercase;
+  margin-top: 1rem;
+  font-size: 0.5rem;
+  letter-spacing: 0.25rem;
+}
+
+footer {
+  padding: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-image: url("../assets/pattern-hills.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+footer .social {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer .social li {
+  display: inline-block;
+}
+
+footer .social li + li {
+  margin-left: 2rem;
+}
+
+footer .social li .icon {
+  fill: var(--grayish-blue);
+}
+
+footer .social li .icon:hover {
+  fill: var(--soft-red);
+}
