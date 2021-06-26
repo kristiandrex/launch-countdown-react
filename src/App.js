@@ -1,8 +1,19 @@
+import Card from "components/Card";
 import { ReactComponent as IconFacebook } from "assets/icon-facebook.svg";
 import { ReactComponent as IconPinterest } from "assets/icon-pinterest.svg";
 import { ReactComponent as IconInstagram } from "assets/icon-instagram.svg";
+import useCountdown from "hooks/useCountdown";
+
+const initialCountdown = {
+  days: 8,
+  hours: 23,
+  minutes: 55,
+  seconds: 41
+};
 
 function App() {
+  const { days, hours, minutes, seconds } = useCountdown(initialCountdown);
+
   return (
     <>
       <header>
@@ -10,22 +21,10 @@ function App() {
       </header>
       <main>
         <div className="timer">
-          <div className="timer-item">
-            <div className="card">08</div>
-            <div className="title">Days</div>
-          </div>
-          <div className="timer-item">
-            <div className="card">23</div>
-            <div className="title">Hours</div>
-          </div>
-          <div className="timer-item">
-            <div className="card">55</div>
-            <div className="title">Minutes</div>
-          </div>
-          <div className="timer-item">
-            <div className="card">41</div>
-            <div className="title">Seconds</div>
-          </div>
+          <Card number={days} title="Days" />
+          <Card number={hours} title="Hours" />
+          <Card number={minutes} title="Minutes" />
+          <Card number={seconds} title="Seconds" />
         </div>
       </main>
       <footer>
