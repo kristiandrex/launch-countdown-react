@@ -1,14 +1,12 @@
 import Card from "components/Card";
-import { ReactComponent as IconFacebook } from "assets/icon-facebook.svg";
-import { ReactComponent as IconPinterest } from "assets/icon-pinterest.svg";
-import { ReactComponent as IconInstagram } from "assets/icon-instagram.svg";
+import { IconFacebook, IconPinterest, IconInstagram } from "components/Icons";
 import useCountdown from "hooks/useCountdown";
 
 const initialCountdown = {
   days: 8,
   hours: 23,
   minutes: 55,
-  seconds: 41
+  seconds: 3
 };
 
 function App() {

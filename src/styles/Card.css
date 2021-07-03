@@ -6,16 +6,41 @@
   margin-left: 1rem;
 }
 
-.card .wrapper {
+.card .shape {
   background-color: var(--dark-desaturated-blue);
   color: var(--soft-red);
   font-size: 2.5rem;
   border-radius: 0.25rem;
   width: 5rem;
   height: 5rem;
-  padding: 1.5rem 0.75rem;
+  padding: 1.5rem 0;
   box-sizing: border-box;
+  position: relative;
   line-height: 2rem;
+}
+
+.card .shape .front,
+.card .shape .back {
+  background-color: var(--dark-desaturated-blue);
+  position: absolute;
+  width: 100%;
+  padding: 0 0.75rem;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.card .shape .back {
+  transform: rotateX(180deg);
+}
+
+.card.flip .shape .front {
+  animation-name: flipOut;
+}
+
+.card.flip .shape .back {
+  animation-name: flipIn;
 }
 
 .card .title {
@@ -24,4 +49,24 @@
   margin-top: 1rem;
   font-size: 0.5rem;
   letter-spacing: 0.25rem;
+}
+
+@keyframes flipOut {
+  from {
+    transform: rotateX(0deg);
+  }
+
+  to {
+    transform: rotateX(180deg);
+  }
+}
+
+@keyframes flipIn {
+  from {
+    transform: rotateX(180deg);
+  }
+
+  to {
+    transform: rotateX(360deg);
+  }
 }

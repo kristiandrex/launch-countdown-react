@@ -1,6 +1,8 @@
 import { useDebugValue, useEffect, useState } from "react";
 import { formatSeconds, getSeconds } from "util/countdown";
 
+export const milliseconds = 1000;
+
 function useCountdown(initialCountdown) {
   const [seconds, setSeconds] = useState(getSeconds(initialCountdown));
   const countdown = formatSeconds(seconds);
@@ -13,7 +15,7 @@ function useCountdown(initialCountdown) {
 
     const interval = setInterval(() => {
       setSeconds(seconds - 1);
-    }, 1000);
+    }, milliseconds);
 
     return () => clearInterval(interval);
   }, [seconds]);
