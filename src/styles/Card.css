@@ -6,24 +6,55 @@
   margin-left: 1rem;
 }
 
-.card .shape {
+.card .square {
   background-color: var(--dark-desaturated-blue);
   color: var(--soft-red);
   font-size: 2.5rem;
   border-radius: 0.25rem;
   width: 5rem;
   height: 5rem;
-  padding: 1.5rem 0;
+  box-shadow: 0 5px var(--darker-blue);
   box-sizing: border-box;
   position: relative;
   line-height: 2rem;
+  overflow: hidden;
 }
 
-.card .shape .front,
-.card .shape .back {
+.card .square .fold {
+  width: 100%;
+  background-color: var(--dark-blue-25-percent);
+  height: 50%;
+  position: relative;
+  z-index: 1;
+}
+
+.card .square .fold::before,
+.card .square .fold::after {
+  display: block;
+  height: var(--fold-size);
+  width: var(--fold-size);
+  content: "";
+  background-color: var(--darker-blue);
+  position: absolute;
+  bottom: calc(var(--fold-size) / -2);
+}
+
+.card .square .fold::before {
+  border-radius: 0 50% 50% 0;
+  left: calc(var(--fold-size) / -2);
+}
+
+.card .square .fold::after {
+  border-radius: 50% 0 0 50%;
+  right: calc(var(--fold-size) / -2);
+}
+
+.card .square .front,
+.card .square .back {
+  width: 100%;
   background-color: var(--dark-desaturated-blue);
   position: absolute;
-  width: 100%;
+  top: 1.5rem;
   padding: 0 0.75rem;
   box-sizing: border-box;
   backface-visibility: hidden;
@@ -31,15 +62,15 @@
   animation-fill-mode: forwards;
 }
 
-.card .shape .back {
+.card .square .back {
   transform: rotateX(180deg);
 }
 
-.card.flip .shape .front {
+.card.flip .square .front {
   animation-name: flipOut;
 }
 
-.card.flip .shape .back {
+.card.flip .square .back {
   animation-name: flipIn;
 }
 
@@ -53,20 +84,20 @@
 
 @keyframes flipOut {
   from {
-    transform: rotateX(0deg);
+    transform: perspective(var(--perspective)) rotateX(0);
   }
 
   to {
-    transform: rotateX(180deg);
+    transform: perspective(var(--perspective)) rotateX(-180deg);
   }
 }
 
 @keyframes flipIn {
   from {
-    transform: rotateX(180deg);
+    transform: perspective(var(--perspective)) rotateX(180deg);
   }
 
   to {
-    transform: rotateX(360deg);
+    transform: perspective(var(--perspective)) rotateX(0);
   }
 }

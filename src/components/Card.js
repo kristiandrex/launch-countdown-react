@@ -18,26 +18,25 @@ function Card({ number, title }) {
   const nextString = String(nextNumber).padStart(2, "0");
 
   useEffect(() => {
-    let timeout;
-
-    if (isInitial.current) {
-      isInitial.current = false;
-    } else {
+    if (!isInitial.current) {
       elementRef.current.classList.add("flip");
 
-      timeout = setTimeout(() => {
+      const timeout = setTimeout(() => {
         setCurrentNumber((value) => getNextNumber(value));
         setNextNumber((value) => getNextNumber(value));
         elementRef.current.classList.remove("flip");
       }, timeoutDuration);
+
+      return () => clearTimeout(timeout);
     }
 
-    return () => clearTimeout(timeout);
+    isInitial.current = false;
   }, [number]);
 
   return (
     <div className="card" ref={elementRef}>
-      <div className="shape">
+      <div className="square">
+        <div className="fold"></div>
         <div className="front">{currentString}</div>
         <div className="back">{nextString}</div>
       </div>
