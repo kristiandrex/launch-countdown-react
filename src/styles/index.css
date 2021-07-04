@@ -1,12 +1,11 @@
 :root {
-  --soft-red: rgb(251, 96, 135);
-  --grayish-blue: rgb(132, 134, 169);
-  --dark-desaturated-blue: rgb(52, 54, 80);
-  --dark-blue: rgb(30, 31, 41);
-  --dark-blue-25-percent: rgba(30, 31, 41, 0.25);
-  --darker-blue: rgb(25, 26, 36);
-  --fold-size: 0.5rem;
-  --perspective: 400px;
+  --soft-red: #fb6087;
+  --light-soft-red: #fc6a8f;
+  --grayish-blue: #8486a9;
+  --light-desaturated-blue: #393b57;
+  --dark-desaturated-blue: #343650;
+  --dark-blue: #1e1f29;
+  --darker-blue: #191a24;
 }
 
 #root {
