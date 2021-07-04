@@ -6,7 +6,7 @@ export function getNextNumber(number) {
   return number === 0 ? 59 : number - 1;
 }
 
-export const timeoutDuration = 500;
+export const animationDuration = 1000;
 
 function Card({ number, title }) {
   const [currentNumber, setCurrentNumber] = useState(number);
@@ -25,7 +25,7 @@ function Card({ number, title }) {
         setCurrentNumber((value) => getNextNumber(value));
         setNextNumber((value) => getNextNumber(value));
         elementRef.current.classList.remove("flip");
-      }, timeoutDuration);
+      }, animationDuration);
 
       return () => clearTimeout(timeout);
     }
@@ -35,10 +35,23 @@ function Card({ number, title }) {
 
   return (
     <div className="card" ref={elementRef}>
-      <div className="square">
-        <div className="fold"></div>
-        <div className="front">{currentString}</div>
-        <div className="back">{nextString}</div>
+      <div className="container">
+        <div className="front">
+          <div className="top">
+            <span className="number">{currentString}</span>
+          </div>
+          <div className="bottom">
+            <span className="number">{currentString}</span>
+          </div>
+        </div>
+        <div className="back">
+          <div className="top">
+            <span className="number">{nextString}</span>
+          </div>
+          <div className="bottom">
+            <span className="number">{nextString}</span>
+          </div>
+        </div>
       </div>
       <div className="title">{title}</div>
     </div>

@@ -6,72 +6,108 @@
   margin-left: 1rem;
 }
 
-.card .square {
-  background-color: var(--dark-desaturated-blue);
-  color: var(--soft-red);
-  font-size: 2.5rem;
-  border-radius: 0.25rem;
+.card .container {
   width: 5rem;
   height: 5rem;
-  box-shadow: 0 5px var(--darker-blue);
-  box-sizing: border-box;
   position: relative;
+}
+
+.card .number {
+  font-size: 2rem;
   line-height: 2rem;
+  color: var(--soft-red);
+  position: absolute;
+  width: 100%;
+  top: 1.5rem;
+  left: 0;
+}
+
+.card .top,
+.card .bottom {
+  position: absolute;
+  height: 2.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--dark-desaturated-blue);
+  backface-visibility: hidden;
   overflow: hidden;
 }
 
-.card .square .fold {
-  width: 100%;
-  background-color: var(--dark-blue-25-percent);
-  height: 50%;
-  position: relative;
+.card .top {
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.card .bottom {
+  top: 2.5rem;
+  background: var(--light-desaturated-blue);
+  border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.card .bottom .number {
+  top: -1rem;
+  color: var(--light-soft-red);
+}
+
+.card .front .top,
+.card .front .bottom {
   z-index: 1;
 }
 
-.card .square .fold::before,
-.card .square .fold::after {
-  display: block;
-  height: var(--fold-size);
-  width: var(--fold-size);
-  content: "";
-  background-color: var(--darker-blue);
-  position: absolute;
-  bottom: calc(var(--fold-size) / -2);
+.card .front .bottom {
+  box-shadow: 0 0.25rem 1px 0 var(--darker-blue);
 }
 
-.card .square .fold::before {
-  border-radius: 0 50% 50% 0;
-  left: calc(var(--fold-size) / -2);
-}
+/* active animations */
 
-.card .square .fold::after {
-  border-radius: 50% 0 0 50%;
-  right: calc(var(--fold-size) / -2);
-}
-
-.card .square .front,
-.card .square .back {
-  width: 100%;
-  background-color: var(--dark-desaturated-blue);
-  position: absolute;
-  top: 1.5rem;
-  padding: 0 0.75rem;
-  box-sizing: border-box;
-  backface-visibility: hidden;
-  animation-duration: 0.5s;
+.card.flip .front .top {
+  animation-name: flipOut;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
-.card .square .back {
+.card .back .bottom {
+  transform-origin: top;
   transform: rotateX(180deg);
 }
 
-.card.flip .square .front {
-  animation-name: flipOut;
+.card.flip .back .bottom {
+  animation-name: flipIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
-.card.flip .square .back {
-  animation-name: flipIn;
+/* semicircles */
+
+.card .top::before,
+.card .top::after,
+.card .bottom::before,
+.card .bottom::after {
+  display: block;
+  height: 0.25rem;
+  width: 0.25rem;
+  content: "";
+  background-color: var(--darker-blue);
+  position: absolute;
+}
+
+.card .top::before {
+  bottom: 0;
+  border-radius: 0 100% 0 0;
+}
+
+.card .top::after {
+  bottom: 0;
+  right: 0;
+  border-radius: 100% 0 0 0;
+}
+
+.card .bottom::before {
+  border-radius: 0 0 100% 0;
+}
+
+.card .bottom::after {
+  right: 0;
+  border-radius: 0 0 0 100%;
 }
 
 .card .title {
@@ -82,22 +118,26 @@
   letter-spacing: 0.25rem;
 }
 
-@keyframes flipOut {
+@keyframes flipIn {
   from {
-    transform: perspective(var(--perspective)) rotateX(0);
+    transform-origin: top;
+    transform: perspective(500px) rotateX(180deg);
   }
 
   to {
-    transform: perspective(var(--perspective)) rotateX(-180deg);
+    transform: rotateX(0);
+    z-index: 1;
   }
 }
 
-@keyframes flipIn {
+@keyframes flipOut {
   from {
-    transform: perspective(var(--perspective)) rotateX(180deg);
+    transform: rotateX(0);
+    transform-origin: bottom;
   }
 
   to {
-    transform: perspective(var(--perspective)) rotateX(0);
+    transform: perspective(500px) rotateX(-180deg);
+    transform-origin: bottom;
   }
 }
