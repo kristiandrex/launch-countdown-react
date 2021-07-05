@@ -1,7 +1,7 @@
 import { animationDuration, getNextNumber } from "./Card";
 
-test("Animation duration should be 1000ms.", () => {
-  expect(animationDuration).toBe(1000);
+test("Animation duration should be 500ms.", () => {
+  expect(animationDuration).toBe(500);
 });
 
 test("Next number should be one less.", () => {
