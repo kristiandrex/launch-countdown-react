@@ -6,7 +6,7 @@ export function getNextNumber(number) {
   return number === 0 ? 59 : number - 1;
 }
 
-export const animationDuration = 1000;
+export const animationDuration = 500;
 
 function Card({ number, title }) {
   const [currentNumber, setCurrentNumber] = useState(number);
