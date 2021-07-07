@@ -10,12 +10,13 @@ const initialCountdown = {
 };
 
 function App() {
-  const { days, hours, minutes, seconds } = useCountdown(initialCountdown);
+  const { countdown, heading } = useCountdown(initialCountdown);
+  const { days, hours, minutes, seconds } = countdown;
 
   return (
     <>
       <header>
-        <h1>We&apos;re launching soon</h1>
+        <h1>{heading}</h1>
       </header>
       <main>
         <div className="timer">

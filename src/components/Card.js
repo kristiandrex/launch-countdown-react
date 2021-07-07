@@ -11,6 +11,7 @@ export const animationDuration = 500;
 function Card({ number, title }) {
   const [currentNumber, setCurrentNumber] = useState(number);
   const [nextNumber, setNextNumber] = useState(getNextNumber(number));
+
   const elementRef = useRef(null);
   const isInitial = useRef(true);
 
@@ -19,12 +20,13 @@ function Card({ number, title }) {
 
   useEffect(() => {
     if (!isInitial.current) {
-      elementRef.current.classList.add("flip");
+      elementRef.current?.classList.add("flip");
 
       const timeout = setTimeout(() => {
         setCurrentNumber((value) => getNextNumber(value));
         setNextNumber((value) => getNextNumber(value));
-        elementRef.current.classList.remove("flip");
+
+        elementRef.current?.classList.remove("flip");
       }, animationDuration);
 
       return () => clearTimeout(timeout);
